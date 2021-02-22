@@ -1,5 +1,3 @@
 <template>
-  <div class="about">
-    <h1>A site for events to better the world.</h1>
-  </div>
+  <h1 class="title">About Page</h1>
 </template>

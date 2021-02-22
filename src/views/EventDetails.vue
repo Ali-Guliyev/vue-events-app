@@ -1,4 +1,5 @@
 <template>
+  <button @click="goBack" class="link">&#60; Go Back</button>
   <div v-if="event">
     <h1>{{ event.title }}</h1>
     <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
@@ -13,16 +14,13 @@
 import EventService from "../services/EventService";
 
 export default {
-  props: {
-    id: String
-  },
+  props: ["id"],
   data() {
     return {
       event: null,
     }
   },
-  created() {
-    // fetch event by id and set local data
+  mounted() {
     EventService.getEventById(this.id)
     .then((res) => {
       this.event = res.data
@@ -30,6 +28,17 @@ export default {
     .catch((err) => {
       console.log(err)
     });
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
   }
 }
 </script>
+
+<style scoped>
+button.link {
+  font-size: 15px;
+}
+</style>
